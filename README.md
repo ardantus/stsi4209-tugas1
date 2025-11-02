@@ -29,6 +29,7 @@ Dibuat sebuah aplikasi website sederhana untuk **pemesanan bahan ajar di UT-Daer
    - Fitur tambah stok baru secara dinamis menggunakan DOM
 
 ## 📁 Struktur Proyek
+```text
 stsi4209-tugas1/
 ├── index.html (opsional, bisa redirect ke login.html)
 ├── login.html
@@ -50,6 +51,7 @@ stsi4209-tugas1/
 │   ├── script.js
 │   └── data.js # berisi data dummy (dataBahanAjar)
 └── README.md
+```
 
 
 ## 🛠️ Teknologi yang Digunakan
