@@ -53,6 +53,10 @@ stsi4209-tugas1/
 └── README.md
 ```
 
+## 🔗 Demo Proyek
+
+Live demo (halaman Login): [stsi4209-tugas1 — Demo Login](https://stsi4209-tugas1.pages.dev/login)
+
 
 ## 🛠️ Teknologi yang Digunakan
 
