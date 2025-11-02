@@ -36,19 +36,19 @@ stsi4209-tugas1/
 ├── tracking.html
 ├── stok.html
 ├── assets/
-│ └── logo-ut.png
+│   └── logo-ut.png
 ├── css/
-│ └── style.css
+│   └── style.css
 ├── img/
-│ └── default-cover.png
-│ └── kepemimpinan.jpg
-│ └── manajemen_keuangan.jpg
-│ └── mikrobiologi.png
-│ └── paud_perkembangan.png
-│ └── pengantar_komunikasi.png
+│   ├── default-cover.png
+│   ├── kepemimpinan.jpg
+│   ├── manajemen_keuangan.jpg
+│   ├── mikrobiologi.png
+│   ├── paud_perkembangan.png
+│   └── pengantar_komunikasi.png
 ├── js/
-│ ├── script.js
-│ └── data.js # berisi data dummy (dataBahanAjar)
+│   ├── script.js
+│   └── data.js # berisi data dummy (dataBahanAjar)
 └── README.md
 
 
