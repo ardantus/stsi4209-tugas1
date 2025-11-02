@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Informasi Stok Bahan Ajar</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">SITTA UT</div>
+        <a href="dashboard.html" style="color:#5a67d8; text-decoration:none;">← Kembali</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2 style="color:white; text-align:center; margin-bottom:20px;">Informasi Stok Bahan Ajar</h2>
+    <div class="table-container">
+      <!-- kontrol pencarian -->
+      <div style="display:flex; justify-content:flex-end; margin-bottom:10px;">
+        <input id="searchBox" type="search" placeholder="Cari kode atau nama barang..." style="min-width:260px; padding:8px 10px; border:1px solid #ccc; border-radius:6px;" />
+      </div>
+      <button id="add-row" class="btn">+ Tambah Baris</button>
+      <table id="tabelStok">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Cover</th>
+            <th>Kode Lokasi</th>
+            <th>Kode Barang</th>
+            <th>Nama Barang</th>
+            <th>Jenis Barang</th>
+            <th>Edisi</th>
+            <th>Stok</th>
+            <th>Aksi</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    // filter sederhana: mencocokkan input dengan kodeBarang atau namaBarang 
+    (function(){
+      const searchBox = document.getElementById('searchBox');
+      const tbody = document.querySelector('#tabelStok tbody');
+      if (!searchBox || !tbody) return;
+
+      function applyFilter() {
+        const q = searchBox.value.trim().toLowerCase();
+        for (const tr of tbody.rows) {
+          const kode = (tr.cells[3]?.textContent || '').toLowerCase();
+          const nama = (tr.cells[4]?.textContent || '').toLowerCase();
+          const show = q === '' || kode.includes(q) || nama.includes(q);
+          tr.style.display = show ? '' : 'none';
+        }
+      }
+
+      searchBox.addEventListener('input', applyFilter);
+
+      // reapply filter ketika tabel berubah (mis. setelah render atau tambah baris)
+      const observer = new MutationObserver(applyFilter);
+      observer.observe(tbody, { childList: true, subtree: true, characterData: true });
+
+      // juga pastikan filter diterapkan setelah tombol tambah dipakai
+      document.getElementById('add-row')?.addEventListener('click', () => setTimeout(applyFilter, 0));
+    })();
+  </script>
+</body>
+</html>

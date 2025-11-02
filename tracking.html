@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tracking Pengiriman</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">SITTA UT</div>
+        <a href="dashboard.html" style="color:#5a67d8; text-decoration:none;">← Kembali</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <h2 style="color:white; text-align:center; margin-bottom:20px;">Tracking Pengiriman</h2>
+    <div class="tracking-form">
+      <div class="input-group">
+        <label for="noDO">Nomor Delivery Order</label>
+        <input type="text" id="noDO" placeholder="Contoh: 2023001234" />
+      </div>
+      <button class="btn" onclick="cariTracking()">Cari</button>
+    </div>
+
+    <div id="result" class="result">
+      <h3>Status: <span id="status"></span></h3>
+      <p><strong>Nama:</strong> <span id="nama"></span></p>
+      <p><strong>Ekspedisi:</strong> <span id="ekspedisi"></span> | <strong>Tanggal Kirim:</strong> <span id="tanggal"></span></p>
+      <p><strong>Paket:</strong> <span id="paket"></span> | <strong>Total:</strong> <span id="total"></span></p>
+
+      <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - SITTA UT</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Menambahkan warna putih pada greeting & jam -->
+  <style>
+    /* greeting dan jam berada di tengah dan berwarna putih */
+    .greeting, #jam {
+      text-align: center;
+      color: #ffffff;
+      display: block;
+    }
+    /* Penyesuaian ukuran dan jarak */
+    .greeting { margin-top: 0.5rem; margin-bottom: 0.25rem; }
+    #jam { font-family: monospace; font-size: 1.125rem; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">SITTA UT</div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div class="user-info">Selamat datang, <span id="namaUser"></span> (<span id="roleUser"></span>)</div>
+          <a href="#" id="logout" style="color:#e53e3e; text-decoration:none; font-weight:600;">Logout</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    <h1 class="greeting" id="greeting"></h1>
+    <div id="jam" class="clock" aria-live="polite">--:--:-- --</div>
+
+    <div class="menu-grid">
+      <a href="stok.html" class="menu-card">
+        <h3>📚 Informasi Bahan Ajar</h3>
+      </a>
+      <a href="tracking.html" class="menu-card">
+        <h3>🚚 Tracking Pengiriman</h3>
+      </a>
+      <div class="menu-card">
+        <h3>📊 Laporan</h3>
+        <p>Monitoring Progress DO</p>
+        <p>Rekap Bahan Ajar</p>
+      </div>
+      <div class="menu-card">
+        <h3>🕒 Histori Transaksi</h3>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const user = JSON.parse(localStorage.getItem("userLogin"));
+      if (!user) window.location.href = "index.html";
+
+      document.getElementById("namaUser").textContent = user.nama;
+      document.getElementById("roleUser").textContent = user.role;
+
+      const hour = new Date().getHours();
+      let greet = "Selamat Malam";
+      if (hour >= 5 && hour < 11) greet = "Selamat Pagi";
+      else if (hour < 15) greet = "Selamat Siang";
+      else if (hour < 18) greet = "Selamat Sore";
+      document.getElementById("greeting").textContent = greet + ", " + user.nama.split(" ")[0] + "!";
+
+      function updateClock() {
+        const now = new Date();
+        let h = now.getHours();
+        const m = now.getMinutes();
+        const s = now.getSeconds();
+        const ampm = h >= 12 ? "PM" : "AM";
+        h = h % 12;
+        h = h ? h : 12;
+        const two = n => String(n).padStart(2, "0");
+        document.getElementById("jam").textContent = `${two(h)}:${two(m)}:${two(s)} ${ampm}`;
+      }
+
+      updateClock();
+      setInterval(updateClock, 1000);
+
+      // Logout: hapus data login dan kembali ke halaman login (index.html)
+      const logoutBtn = document.getElementById("logout");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", function(e) {
+          e.preventDefault();
+          localStorage.removeItem("userLogin");
+          window.location.href = "index.html";
+        });
+      }
+    });
+  </script>
+</body>
+</html>
